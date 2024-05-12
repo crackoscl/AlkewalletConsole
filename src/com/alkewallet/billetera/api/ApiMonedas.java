@@ -12,6 +12,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.net.HttpURLConnection;
 
+/**
+ * Obtiene los indicadores de monedas desde la API de Mindicador.
+ */
 public class ApiMonedas {
     private HashMap<String, IMoneda> monedas = new HashMap<>();
 

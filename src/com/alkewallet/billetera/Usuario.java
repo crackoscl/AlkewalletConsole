@@ -12,11 +12,23 @@ public class Usuario {
 	private String email;
 	private Cuenta cuenta;
 
+	/**
+     * Constructor de la clase Usuario que genera un UUID único y crea una nueva cuenta.
+     */
 	public Usuario() {
 		this.userId = UUID.randomUUID();
 		cuenta = new Cuenta();
 	}
 
+	/**
+     * Constructor de la clase Usuario que inicializa el usuario con información personal y una cuenta.
+     * @param userId El UUID del usuario.
+     * @param nombre El nombre del usuario.
+     * @param apellido El apellido del usuario.
+     * @param rut El RUT del usuario.
+     * @param email El email del usuario.
+     * @param cuenta La cuenta asociada al usuario.
+     */
 	public Usuario(UUID userId, String nombre,String apellido, String rut, String email, Cuenta cuenta) {
 		this.userId = userId;
 		this.nombre = nombre;
@@ -77,6 +89,10 @@ public class Usuario {
 		return userId;
 	}
 	
+	 /**
+     * Método para crear un nuevo usuario ingresando información personal.
+     * @param entrada Scanner para entrada de datos.
+     */
 	public void crearUsuario(Scanner entrada) {
 		System.out.println();
 		System.out.print("ingrese su Nombre:");
@@ -126,15 +142,31 @@ public class Usuario {
 		System.out.println();
 	}
 
+	/**
+     * Valida si una cadena es un string válido (solo letras).
+     * @param string La cadena a validar.
+     * @return true si la cadena es válida, false de lo contrario.
+     */
 	public boolean validarString(String string) {
 		return !string.isEmpty() && string.matches("[a-zA-Z]+");
 	}
 
+	
+	/**
+     * Valida si un email tiene un formato válido.
+     * @param email El email a validar.
+     * @return true si el email es válido, false de lo contrario.
+     */
 	public boolean validarEmail(String email) {
 		String emailRegex = "^[\\w-+]+(\\.[\\w-]{1,62}){0,126}@[\\w-]{1,63}(\\.[\\w-]{1,62})+[\\w-]+$";
 		return email.matches(emailRegex);
 	}
 
+	 /**
+     * Valida si un RUT chileno es válido.
+     * @param rut El RUT a validar.
+     * @return true si el RUT es válido, false de lo contrario.
+     */
 	public boolean validarRut(String rut) {
 		boolean validacion = false;
         rut =  rut.toUpperCase();

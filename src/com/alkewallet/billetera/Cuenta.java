@@ -12,11 +12,20 @@ public class Cuenta implements ICuenta {
 	private double saldo = 0;
 	private Usuario usuario;
 
+	/**
+     * Constructor de la clase Cuenta que genera un número de cuenta aleatorio.
+     */
 	public Cuenta() {
 		this.numeroCuenta = "CL"
 				+ new Random().ints(10, 0, 10).mapToObj(Integer::toString).collect(Collectors.joining());
 	}
 
+	/**
+     * Constructor de la clase Cuenta que inicializa la cuenta con un usuario, número de cuenta y saldo.
+     * @param usuario El usuario asociado a la cuenta.
+     * @param numeroCuenta El número de cuenta.
+     * @param saldo El saldo inicial de la cuenta.
+     */
 	public Cuenta(Usuario usuario, double numeroCuenta, double saldo) {
 		this.saldo = saldo;
 		this.usuario = usuario;
@@ -38,6 +47,11 @@ public class Cuenta implements ICuenta {
 		this.usuario = usuario;
 	}
 
+	 /**
+     * Realiza un depósito en la cuenta.
+     * @param monto El monto a depositar.
+     */
+	
 	@SuppressWarnings("resource")
 	@Override
 	public void depositar(Double monto) {
@@ -61,7 +75,11 @@ public class Cuenta implements ICuenta {
 		System.out.printf("--------------------------------%n");
 		System.out.println();
 	}
-
+	
+	 /**
+     * Realiza un retiro de la cuenta.
+     * @param monto El monto a retirar.
+     */
 	@SuppressWarnings("resource")
 	@Override
 	public void retirar(Double monto) {
@@ -93,6 +111,10 @@ public class Cuenta implements ICuenta {
 		return this.saldo;
 	}
 
+	 /**
+     * Convierte el saldo de la cuenta a una moneda específica.
+     * @param entrada Scanner para entrada de datos.
+     */
 	public void ConvertirMoneda(Scanner entrada) {
 		if (this.saldo > 0) {
 			ApiMonedas monedas = new ApiMonedas();
@@ -132,6 +154,11 @@ public class Cuenta implements ICuenta {
 		}
 	}
 
+	/**
+     * Verifica si una cadena es numérica.
+     * @param str La cadena a verificar.
+     * @return true si la cadena es numérica, false de lo contrario.
+     */
 	public static boolean isNumeric(String str) {
 		try {
 			Double.parseDouble(str);
@@ -141,6 +168,11 @@ public class Cuenta implements ICuenta {
 		}
 	}
 
+	 /**
+     * Valida si la cantidad a depositar es válida.
+     * @param cantidad La cantidad a validar.
+     * @return true si la cantidad es válida, false de lo contrario.
+     */
 	public boolean validarDeposito(Double cantidad) {
 		if (cantidad <= 0) {
 			return false;
@@ -149,6 +181,11 @@ public class Cuenta implements ICuenta {
 		}
 	}
 
+	/**
+	 * Valida si la cantidad a retirar es válida.
+	 * @param cantidad La cantidad a validar.
+	 * @return true si la cantidad es válida para el retiro, false de lo contrario.
+	 */
 	public boolean validarRetiro(Double cantidad) {
 		if (cantidad <= 0) {
 			return false;
